@@ -1,22 +1,63 @@
-#include <cstdio>
-#include <iostream>
+#include <stdio.h>
 #include <unistd.h>
-
-
+#include <iostream>
+#include <string.h>
 
 int main()
 {
-	char input[20];
-	int a;
+	//char input[20];
+	int childPid;
+	int pfd[2];
+	char buffer[20];
+	std::string input;
 
-    printf("hello from ConsoleApplication over 9000!\n");
-	scanf("%19[0-9a-zA-Z ]", input);
-	printf(input);
+   
+	
+	
 
-	fork();
+	pipe(pfd);
+
+	childPid = fork();
+
+	if (childPid == 0)
+	{
+
+		//child code
+		
+	
+
+			close(pfd[1]);
+			int nbytes = read(pfd[0], buffer , 20);
+
+			std::cout << buffer << std::endl;
+			
+
+			exit(1);
+		
+	}
+	else
+	{
+
+		//parent code
+		
+		
+
+			
+		do {
+			std::cin >> input;
 
 
-	printf("\n after fork\n");
+			close(pfd[0]);
+			const char *cinput = input.c_str();
+			write(pfd[1], cinput, sizeof(input));
+
+		} while (input != "q");
+
+			exit(1);
+
+	}
+
+	
 
 
     return 0;
