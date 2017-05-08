@@ -2,15 +2,25 @@
 #include <unistd.h>
 #include <iostream>
 #include <string>
+#include "reporter.h"
+#include "scheduler.h"
+#include "processor.h"
+
+
+int childPid;
+int pfd[2];
+char buffer[20];
+char input[20];
+std::string sbuffer;
+bool automode = false;
+reporter *Reporter = new reporter;
+scheduler *Scheduler = NULL; // TODO chose scheduler here !!!
+
+
 
 int main()
 {
-	//char input[20];
-	int childPid;
-	int pfd[2];
-	char buffer[20];
-	char input[20];
-	std::string sbuffer;
+	
 	
    
 	
@@ -37,7 +47,62 @@ int main()
 
 				std::cout << "Manager: " <<sbuffer << std::endl;
 
+
+				// bad menu solution - rework TODO
+
+
+				//report
+				if (sbuffer == "Report")
+				{
+					
+					Reporter->report();
+
+				}
+
+				//automode
+				if (sbuffer == "Mode")
+				{
+					automode = true;
+
+					std::cout << "Changing to automode !" << std::endl;
+
+				}
+
+
+				//step
+				if (sbuffer == "Step")
+				{
+					if (automode == false)
+					{
+						// TODO step
+					}
+					else {
+
+						std::cout << "Step can only be used in Debug Mode" << std::endl;
+
+					}
+				}
+
 			
+				//unblock
+				if (sbuffer == "Unblock")
+				{
+
+					Scheduler->unblock();
+
+				}
+
+
+				//print
+				if (sbuffer == "Print")
+				{
+					Reporter->report();
+				}
+
+
+
+
+		// menu ends here
 		}
 		
 
@@ -77,6 +142,7 @@ int main()
 	}
 
 	
+	delete Reporter;
 
 
     return 0;

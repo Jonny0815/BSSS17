@@ -7,3 +7,4 @@ int fork() {return 0;}
 void close(int);
 int read(int,const char*, int);
 int write(int,const char*, int);
+void sleep(int);
