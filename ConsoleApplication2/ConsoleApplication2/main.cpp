@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <iostream>
-#include <string.h>
+#include <string>
 
 int main()
 {
@@ -9,11 +9,12 @@ int main()
 	int childPid;
 	int pfd[2];
 	char buffer[20];
-	std::string input;
-
+	char input[20];
+	std::string sbuffer;
+	
    
 	
-	
+	std::cout << "bla" << std::endl;
 
 	pipe(pfd);
 
@@ -24,15 +25,26 @@ int main()
 
 		//child code
 		
-	
+		while (sbuffer != "Quit")
+		{
 
 			close(pfd[1]);
-			int nbytes = read(pfd[0], buffer , 20);
+			int nbytes = read(pfd[0], buffer, 20);
 
-			std::cout << buffer << std::endl;
+			sbuffer = std::string(buffer);
+
 			
 
-			exit(1);
+				std::cout << "Manager: " <<sbuffer << std::endl;
+
+			
+		}
+		
+
+			
+
+
+			
 		
 	}
 	else
@@ -42,18 +54,25 @@ int main()
 		
 		
 
-			
-		do {
+		while (input != "Quit")
+		{
+			std::cout << "Command: ";
 			std::cin >> input;
 
 
 			close(pfd[0]);
-			const char *cinput = input.c_str();
-			write(pfd[1], cinput, sizeof(input));
+			write(pfd[1], input, 20);
 
-		} while (input != "q");
+		
 
-			exit(1);
+
+			sleep(1);
+
+			
+
+		}
+
+			exit(0);
 
 	}
 
