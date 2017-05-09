@@ -6,6 +6,7 @@
     <ClCompile Include="process.cpp" />
     <ClCompile Include="processor.cpp" />
     <ClCompile Include="scheduler.cpp" />
+    <ClCompile Include="scheduler_algorythm_1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\fakeheaders\unistd.h" />
@@ -13,5 +14,6 @@
     <ClInclude Include="process.h" />
     <ClInclude Include="processor.h" />
     <ClInclude Include="scheduler.h" />
+    <ClInclude Include="scheduler_algorythm_1.h" />
   </ItemGroup>
 </Project>

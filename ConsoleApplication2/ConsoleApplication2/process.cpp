@@ -2,11 +2,12 @@
 
 
 
-process::process(std::string file,int id_h)
+process::process(std::string file,int id_h, int pid_h)
 {
 
 	blocked = false;
 	id = id_h;
+	parent_id = pid_h;
 	
 
 	// TODO save commands from file into commands vector
@@ -32,10 +33,13 @@ int process::next_command(processor* p_h) {
 		switch (command)
 		{
 		case 'S': p_h->set(value_i);
+			return 2;
 			break;
 		case 'A': p_h->add(value_i);
+			return 2;
 			break;
 		case 'D': p_h->sub(value_i);
+			return 2;
 			break;
 		case 'R':
 
@@ -45,6 +49,9 @@ int process::next_command(processor* p_h) {
 
 			break;
 		default:
+
+			return 4;
+
 			break;
 		}
 

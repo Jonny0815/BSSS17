@@ -14,7 +14,7 @@ char input[20];
 std::string sbuffer;
 bool automode = false;
 reporter *Reporter = new reporter;
-scheduler *Scheduler = NULL; // TODO chose scheduler here !!!
+scheduler *Scheduler = NULL; // TODO chose scheduler !!!
 
 
 
@@ -64,6 +64,10 @@ int main()
 				{
 					automode = true;
 
+					Scheduler->set_automode(true);
+
+					Scheduler->schedule();
+
 					std::cout << "Changing to automode !" << std::endl;
 
 				}
@@ -74,7 +78,7 @@ int main()
 				{
 					if (automode == false)
 					{
-						// TODO step
+						Scheduler->schedule();
 					}
 					else {
 
@@ -88,7 +92,7 @@ int main()
 				if (sbuffer == "Unblock")
 				{
 
-					Scheduler->unblock();
+					Scheduler->user_unblock_oldest();
 
 				}
 
@@ -117,7 +121,10 @@ int main()
 
 		//parent code
 		
-		
+		// TODO scheduler select !!!
+
+
+
 
 		while (input != "Quit")
 		{

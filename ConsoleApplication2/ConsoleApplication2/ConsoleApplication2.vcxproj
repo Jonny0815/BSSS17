@@ -66,6 +66,7 @@
     <ClCompile Include="processor.cpp" />
     <ClCompile Include="reporter.cpp" />
     <ClCompile Include="scheduler.cpp" />
+    <ClCompile Include="scheduler_algorythm_1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\fakeheaders\unistd.h" />
@@ -73,6 +74,7 @@
     <ClInclude Include="processor.h" />
     <ClInclude Include="reporter.h" />
     <ClInclude Include="scheduler.h" />
+    <ClInclude Include="scheduler_algorythm_1.h" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
