@@ -19,8 +19,10 @@ scheduler::~scheduler()
 
 process *scheduler::create_proc(std::string file, int parent_id) {
 
-	process *new_process = new process(file, process_counter, parent_id);
 	process_counter++;
+
+	process *new_process = new process(file, process_counter, parent_id);
+	
 	return new_process;
 
 }
@@ -38,6 +40,8 @@ void scheduler::unblock(process* p_h) {
 
 	p_h->set_blocked(false);
 	unblocked_processes.push_back(p_h);
+
+	//TODO remove process from blocked list
 
 }
 
@@ -57,8 +61,8 @@ void scheduler::run(process *p_h) {
 
 		active_process = p_h;
 
-		Processor->set_pc(0);
-		Processor->set_r1(0);
+		Processor->set_pc(p_h->get_pc());
+		Processor->set_r1(p_h->get_r1());
 
 		run();
 
@@ -76,6 +80,7 @@ void scheduler::run() {
 
 		active_process->set_pc(Processor->get_pc());
 		active_process->set_r1(Processor->get_r1());
+		active_process->add_succ();
 		run(create_proc(active_process->to_exec, active_process->get_id()));
 
 		break;
@@ -92,6 +97,16 @@ void scheduler::run() {
 		active_process->add_succ();
 
 		break;
+
+	case 3:
+
+		active_process->set_pc(Processor->get_pc());
+		active_process->set_r1(Processor->get_r1());
+
+		//TODO trap !!!
+
+		break;
+
 
 	case 4:
 

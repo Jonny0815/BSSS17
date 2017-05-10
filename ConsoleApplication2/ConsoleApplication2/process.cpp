@@ -10,7 +10,7 @@ process::process(std::string file,int id_h, int pid_h)
 	parent_id = pid_h;
 	
 
-	// TODO save commands from file into commands vector
+	// TODO save commands from file into commands list
 
 }
 
@@ -48,6 +48,15 @@ int process::next_command(processor* p_h) {
 			return 1;
 
 			break;
+
+		case 'B' :
+
+			this->set_blocked(true);
+
+			return 3;
+
+			break;
+
 		default:
 
 			return 4;
