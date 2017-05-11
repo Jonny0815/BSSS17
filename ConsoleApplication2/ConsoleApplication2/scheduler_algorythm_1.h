@@ -3,7 +3,7 @@
 
 #include "scheduler.h"
 class scheduler_algorythm_1 :
-	protected scheduler
+	public scheduler
 {
 public:
 	scheduler_algorythm_1();

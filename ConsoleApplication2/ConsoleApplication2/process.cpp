@@ -1,5 +1,5 @@
 #include "process.h"
-
+#include <fstream>
 
 
 process::process(std::string file,int id_h, int pid_h)
@@ -9,8 +9,16 @@ process::process(std::string file,int id_h, int pid_h)
 	id = id_h;
 	parent_id = pid_h;
 	
+	
+	std::ifstream ifs;
+	ifs.open(file.c_str(), std::ios::in);
 
-	// TODO save commands from file into commands list
+	while (!ifs.eof())
+	{
+		std::string commandbuffer;
+		getline(ifs, commandbuffer);
+		commands.push_back(commandbuffer);
+	}
 
 }
 
@@ -28,7 +36,7 @@ int process::next_command(processor* p_h) {
 		std::string value_s;
 		
 
-		//TODO convert loaded command from commands vector into command and value
+		//TODO seprate commands from commands list into command and value
 
 		switch (command)
 		{

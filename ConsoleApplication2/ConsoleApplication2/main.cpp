@@ -5,6 +5,7 @@
 #include "reporter.h"
 #include "scheduler.h"
 #include "processor.h"
+#include "scheduler_algorythm_1.h"
 
 
 int childPid;
@@ -14,7 +15,7 @@ char input[20];
 std::string sbuffer;
 bool automode = false;
 reporter *Reporter = new reporter;
-scheduler *Scheduler = NULL; // TODO chose scheduler !!!
+scheduler *Scheduler = new scheduler_algorythm_1; // chose scheduler here !!!
 
 
 
