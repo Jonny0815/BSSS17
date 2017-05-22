@@ -48,6 +48,9 @@ void scheduler::unblock(process* p_h) {
 
 void scheduler::end(process* p_h) {
 
+
+	//TODO
+
 	delete p_h;
 
 }
@@ -104,7 +107,8 @@ void scheduler::run() {
 		active_process->set_pc(Processor->get_pc());
 		active_process->set_r1(Processor->get_r1());
 
-		//TODO trap !!!
+		blocked_processes.push_back(active_process);
+
 
 		break;
 
