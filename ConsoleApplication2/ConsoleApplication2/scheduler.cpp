@@ -33,6 +33,7 @@ void scheduler::block(process* p_h) {
 	p_h->set_pc(Processor->get_pc());
 	p_h->set_r1(Processor->get_r1());
 	blocked_processes.push_back(p_h);
+	
 		
 }
 
