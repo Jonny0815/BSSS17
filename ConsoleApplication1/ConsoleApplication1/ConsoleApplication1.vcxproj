@@ -63,10 +63,12 @@
   <ItemGroup>
     <ClCompile Include="database.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="manager.cpp" />
     <ClCompile Include="reader-writer-threads.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="database.h" />
+    <ClInclude Include="manager.h" />
     <ClInclude Include="reader-writer-threads.h" />
     <ClInclude Include="stopwatch.h" />
   </ItemGroup>
