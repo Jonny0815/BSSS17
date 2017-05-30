@@ -1,6 +1,11 @@
 #pragma once
-
+#include <iostream>			// for std::cin, cerr, cout ...
+#include <thread>			// for std::this_thread
+#include <chrono>			// for std::chrono... 
 #include <mutex>
+#include "common.h"
+#include "database.h"
+
 
 class user {
 
@@ -9,9 +14,11 @@ public:
 	~user();
 
 	std::mutex mtx;
+	bool finished = false;
 
 	virtual void write(int, int);
 	virtual void read(int, int);
+	std::thread go(int, int);
 
 };
 
@@ -24,6 +31,7 @@ public:
 
 
 	void write(int, int);
+	std::thread go(int, int);
 
 };
 

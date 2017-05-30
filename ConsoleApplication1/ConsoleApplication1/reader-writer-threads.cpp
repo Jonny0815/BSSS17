@@ -1,12 +1,5 @@
-#include <iostream>			// for std::cin, cerr, cout ...
-#include <thread>			// for std::this_thread
-#include <chrono>			// for std::chrono... 
 
-#include <mutex>
-
-#include "database.h"
 #include "reader-writer-threads.h"
-
 
 // ******** reader & writer threads ******** 
 
@@ -14,6 +7,13 @@
 
 
 // The writer thread
+
+
+writer::writer() {
+
+	mtx.lock();
+
+}
 
 
 	void writer::write(int writerID, int numSeconds) {
@@ -27,7 +27,13 @@
 
 			mtx.lock();
 
+			writing.lock();
+
 			bool result = theDatabase.write(writerID);
+
+			writing.unlock();
+
+
 			++tests;
 
 			// sleep a while...
@@ -46,11 +52,21 @@
 			<< "Finished. Returning after " << tests
 			<< " tests." << std::endl;
 
+		finished = true;
+
 	} // end writer function
 
 
 
 // The reader thread
+
+
+
+	reader::reader() {
+
+		mtx.lock();
+
+	}
 
 
 	void reader::read(int readerID, int numSeconds) {
@@ -64,7 +80,19 @@
 
 			mtx.lock();
 
+
+
+			num_rdr_mtx.lock();
+			num_rdr = num_rdr + 1;
+			num_rdr_mtx.unlock();
+
 			bool result = theDatabase.read(readerID);
+
+
+			num_rdr_mtx.lock();
+			num_rdr = num_rdr -1;
+			num_rdr_mtx.unlock();
+			
 			++tests;
 
 			// sleep a while...
@@ -83,5 +111,16 @@
 			<< "Finished. Returning after " << tests
 			<< " tests." << std::endl;
 
+
+		finished = true;
+
 	} // end reader function
 
+
+
+
+	std::thread writer::go(int w, int numsec) {
+
+		return std::thread(write, w, numsec);
+
+	}
