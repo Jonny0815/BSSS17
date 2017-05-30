@@ -7,11 +7,13 @@
 #include <algorithm>
 
 #include "manager.h"
-
+#include "common.h"
 #include "database.h"
 #include "reader-writer-threads.h"
 
 const int maxThreads = 1024;
+
+
 
 /********************************************* * main entry point *********************************************/
 int main(int argc, char *argv[])
@@ -33,7 +35,7 @@ int main(int argc, char *argv[])
 	std::vector< std::thread > rThread(numReaders);
 	std::vector< std::thread > wThread(numWriters);
 
-	std::list<user*> Users;
+	
 
 	std::cout << "In " << argv[0]
 		<< ", seconds = " << numSeconds
@@ -41,27 +43,30 @@ int main(int argc, char *argv[])
 		<< ", readers = " << numReaders
 		<< ", ready to go..." << std::endl;
 
+
+	manager Manager;
+
 	// create writer threads
 	for (int w = 0; w < numWriters; w++) {
 		user *User = new writer;
-		wThread[w] = std::thread(User->write, w, numSeconds);
-		User->mtx.lock();
-		Users.push_back(User);
+		wThread[w] = User->go(w, numSeconds); //neither working
+		
+		Manager.Users.push_back(User);
 	}
 
 	// create reader threads
 	for (int r = 0; r < numReaders; r++) {
 		user *User = new reader;
 		rThread[r] = std::thread(User->read, r, numSeconds);
-		User->mtx.lock();
-		Users.push_back(User);
+		
+		Manager.Users.push_back(User);
 	}
 
-	manager Manager;
+	
 
-	std::thread(Manager.manage);
+	std::thread mThread = std::thread(Manager.manage);
 
-	std::random_shuffle(Users.begin(), Users.end());
+	std::random_shuffle(Manager.Users.begin(), Manager.Users.end());
 
 	std::cout << "Finished creating all threads..." << std::endl;
 
@@ -70,6 +75,8 @@ int main(int argc, char *argv[])
 		t.join();
 	for (std::thread& t : rThread)
 		t.join();
+
+	mThread.join();
 
 	theDatabase.printStatistics();
 	std::cout << "Simulation finished! Database is "

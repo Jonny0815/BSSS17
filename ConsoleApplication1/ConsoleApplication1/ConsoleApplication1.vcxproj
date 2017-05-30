@@ -67,6 +67,7 @@
     <ClCompile Include="reader-writer-threads.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common.h" />
     <ClInclude Include="database.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="reader-writer-threads.h" />
