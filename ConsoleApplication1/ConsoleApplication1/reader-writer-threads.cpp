@@ -1,7 +1,7 @@
 #include <iostream>			// for std::cin, cerr, cout ...
 #include <thread>			// for std::this_thread
 #include <chrono>			// for std::chrono... 
-
+#include <mutex>
 #include "database.h"
 #include "reader-writer-threads.h"
 
@@ -19,6 +19,8 @@ void writer( int writerID, int numSeconds ) {
 	while ( ( std::chrono::steady_clock::now() - startTime ) < maxTime ) {
 		
 		bool result = theDatabase.write( writerID );
+
+
 		++tests;
 
 		// sleep a while...
