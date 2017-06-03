@@ -13,7 +13,6 @@
 int rc = 0;
 
 std::mutex mtx_enter;
-std::mutex mtx_exit;
 std::mutex mtx_rc;
 
 
@@ -89,11 +88,11 @@ void reader( int readerID, int numSeconds ) {
 
 		bool result = theDatabase.read( readerID );
 
-		mtx_exit.lock();
+		
 		mtx_rc.lock();
 		rc--;
 		mtx_rc.unlock();
-		mtx_exit.unlock();
+		
 
 		++tests;
 
