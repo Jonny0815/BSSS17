@@ -61,19 +61,15 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
-    <ClCompile Include="frame.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mmu.cpp" />
     <ClCompile Include="operating_system.cpp" />
-    <ClCompile Include="page.cpp" />
     <ClCompile Include="page_table.cpp" />
     <ClCompile Include="processor.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="frame.h" />
     <ClInclude Include="mmu.h" />
     <ClInclude Include="operating_system.h" />
-    <ClInclude Include="page.h" />
     <ClInclude Include="page_table.h" />
     <ClInclude Include="processor.h" />
   </ItemGroup>

@@ -2,8 +2,12 @@
 
 
 
-page_table::page_table()
+page_table::page_table(int pages)
 {
+
+	int _table[pages];
+	table = _table;
+
 }
 
 
