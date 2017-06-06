@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <math.h>
 
 int main()
 {
@@ -10,7 +11,7 @@ int main()
 	int cell = 2857;
 	int offset = 1024;
 
-	std::cout << cell / offset << " " << cell % offset << std::endl;
+	std::cout << 8192/pow(2,10) << " " << cell % offset << std::endl;
 
     return 0;
 }

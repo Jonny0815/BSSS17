@@ -1,4 +1,7 @@
 #pragma once
+
+#include "common.h"
+
 class page_table
 {
 private:
@@ -6,11 +9,14 @@ private:
 	
 
 public:
-	page_table(int);
+	page_table();
 	~page_table();
 
-	int* table;
-
+	int* number;
+	bool* present;
+	bool* refered;
+	bool* modified;
+	bool* protect;
 
 };
 

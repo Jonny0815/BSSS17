@@ -5,7 +5,7 @@
 
 #include "operating_system.h"
 #include "page_table.h"
-
+#include "common.h"
 
 class mmu
 {
@@ -14,9 +14,7 @@ private:
 
 	page_table* pt;
 	operating_system* os;
-	int mem_wide;
-	int offset;
-	int frames;
+	
 
 public:
 	mmu(operating_system*,int, int);

@@ -5,9 +5,7 @@
 mmu::mmu(operating_system* os_h, int offset_h, int mem_wide_h)
 {
 	os = os_h;
-	mem_wide = mem_wide_h;
-	offset = offset_h;
-	frames = pow(2 , mem_wide - offset);
+	
 }
 
 
@@ -23,7 +21,7 @@ int mmu::translate(int cell) {
 
 	for (std::size_t i = 0; i < frames-1; i++) // i = frame
 	{
-		if (pt->table[i] == read_page)
+		if (pt->number[i] == read_page) //TODO somethings wrong here !!!
 		{
 			return i * offset + read_offset;
 		}
