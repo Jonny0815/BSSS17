@@ -6,3 +6,4 @@ void writer( int writerID, int numSeconds );
 // The reader thread
 void reader( int readerID, int numSeconds );
 
+void waittime();

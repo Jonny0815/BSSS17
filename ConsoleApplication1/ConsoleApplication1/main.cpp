@@ -56,6 +56,8 @@ int main(int argc, char *argv[])
 		<< (theDatabase.ok() ? "OK!" : "NOT OK!!!")
 		<< std::endl;
 
+	waittime();
+
 	return(0);
 }
 

@@ -15,6 +15,7 @@ int rc = 0;
 std::mutex mtx_enter;
 std::mutex mtx_rc;
 
+int writer_wait = 0;
 
 void writer( int writerID, int numSeconds ) {
 
@@ -39,8 +40,9 @@ void writer( int writerID, int numSeconds ) {
 			}
 
 			mtx_rc.unlock();
-			std::cout << "Writer " << writerID << " sleeping for 100ms ..." << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
+			
+			std::this_thread::sleep_for(std::chrono::milliseconds(10));
+			writer_wait++;
 			
 		}
 		
@@ -114,3 +116,9 @@ void reader( int readerID, int numSeconds ) {
 
 } // end reader function
 
+
+void waittime() {
+
+	std::cout << "Overall waiting time writer = " << writer_wait << std::endl;
+
+}
