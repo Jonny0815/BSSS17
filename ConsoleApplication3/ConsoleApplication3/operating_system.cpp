@@ -4,11 +4,17 @@
 
 operating_system::operating_system()
 {
+
+	frames = new frame[frames_count];
+
 }
 
 
 operating_system::~operating_system()
 {
+
+	delete frames;
+
 }
 
 
