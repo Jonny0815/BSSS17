@@ -19,7 +19,7 @@ int mmu::translate(int cell) {
 	int read_page = cell / offset;
 	int read_offset = cell % offset;
 
-	for (std::size_t i = 0; i < frames-1; i++) // i = frame
+	for (std::size_t i = 0; i < frames_count-1; i++) // i = frame
 	{
 		if (pt->number[i] == read_page) //TODO somethings wrong here !!!
 		{
