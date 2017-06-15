@@ -1,10 +1,10 @@
 #pragma once
 
-//#include <vector>
-//
-//#include "common.h"
-//#include "process.h"
-//#include "mmu.h"
+#include <vector>
+
+#include "common.h"
+#include "process.h"
+#include "frame.h"
 
 class operating_system
 {
@@ -12,8 +12,10 @@ class operating_system
 
 private:
 
-	
-	//mmu* mymmu;
+	process* active_process;
+	std::vector<process> processes;
+	frame* frames;
+
 	int freeframe();
 
 public:
@@ -21,7 +23,6 @@ public:
 	~operating_system();
 
 	void load_page(int);
-	//std::vector<process*> processes;
 
 };
 

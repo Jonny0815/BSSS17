@@ -3,27 +3,26 @@
 
 
 operating_system::operating_system()
-{/*
-	for (int i = 0; i < number_of_processes; i++)
-	{
-		process* new_proc = new process;
-		processes.push_back(new_proc);
-	}
+{
 
-*/
+	frames = new frame[frames_count];
+
 }
 
 
 operating_system::~operating_system()
 {
+
+	delete frames;
+
 }
 
 
 void operating_system::load_page(int cell) {
 
+	int page = cell / offset;
 	
-	
-	/*int load_startpoint = freeframe();
+	int load_startpoint = freeframe();
 
 	int data_startpoint = active_process->data_start;
 
@@ -33,7 +32,7 @@ void operating_system::load_page(int cell) {
 
 		data_startpoint++;
 	}
-*/
+
 
 
 }
