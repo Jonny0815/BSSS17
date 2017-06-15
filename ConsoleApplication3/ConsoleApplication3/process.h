@@ -8,17 +8,18 @@ class process
 private:
 
 	page_table* pt;
+	int number;
+	int data_start;
+	int data_size;
 
 	
 
 
 public:
-	process();
+	process(page_table*, int, int, int);
 	~process();
 
-
-	int data_start;
-	int data_size;
+	
 
 };
 
