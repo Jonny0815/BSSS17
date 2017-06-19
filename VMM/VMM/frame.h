@@ -2,6 +2,8 @@
 
 #include "page.h"
 
+class page;
+
 class frame
 {
 public:

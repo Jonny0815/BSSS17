@@ -22,5 +22,8 @@ private:
 public:
 	process(hdd*);
 	~process();
+
+	size_t get_size() { return data_size; }
+
 };
 
