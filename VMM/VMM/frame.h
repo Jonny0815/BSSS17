@@ -10,7 +10,7 @@ public:
 	frame();
 	~frame();
 
-	page* Page;
+	page* Page = nullptr;
 
 
 };

@@ -12,7 +12,7 @@ public:
 	bool ref;
 	bool prot;
 	bool pres;
-	
+	int frame_number;
 	
 
 };

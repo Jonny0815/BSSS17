@@ -8,7 +8,7 @@
 
 	static int number_of_processes = 10;
 	static int page_size = 64; //pagesize in bytes, only use pow(2,x)
-
+	static int adress_generator_mode = 0; // 0 = random, 1= TODO
 
 
 	//_______________________________________________

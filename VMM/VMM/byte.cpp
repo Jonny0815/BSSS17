@@ -7,13 +7,14 @@ byte::byte()
 	value = rand() % 256;
 }
 
-byte::byte(byte* byte_to_copy) {
+byte::byte(byte* org) {
 
-	value = byte_to_copy->value;
+	value = org->value;
 
 }
 
 byte::~byte()
 {
 }
+
 

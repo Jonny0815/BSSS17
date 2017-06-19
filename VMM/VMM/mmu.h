@@ -13,12 +13,16 @@ private:
 	ram* RAM;
 	page_table* PT;
 
+	
 
 public:
-	mmu();
+	mmu(ram*);
 	~mmu();
 
 	void set_pt(page_table*);
 	operating_system* get_os() { return OS; }
+
+	int translate(int);
+	
 };
 
