@@ -17,6 +17,8 @@ std::mutex mtx_rc;
 
 int writer_wait = 0;
 
+std::chrono::nanoseconds time_writer;
+
 void writer( int writerID, int numSeconds ) {
 
 	std::cout << "Writer " << writerID << " starting..." << std::endl;
@@ -27,8 +29,13 @@ void writer( int writerID, int numSeconds ) {
 	std::chrono::seconds maxTime( numSeconds ); 
 	while ( ( std::chrono::steady_clock::now() - startTime ) < maxTime ) {
 		
+
+		
+
 		mtx_enter.lock();
 		
+		auto time_start = std::chrono::steady_clock::now();
+
 		while (true)
 		{
 			mtx_rc.lock();
@@ -41,13 +48,17 @@ void writer( int writerID, int numSeconds ) {
 
 			mtx_rc.unlock();
 			
-			std::this_thread::sleep_for(std::chrono::milliseconds(10));
+			std::this_thread::sleep_for(std::chrono::milliseconds(timetowait));
 			writer_wait++;
 			
 		}
 		
 
 		bool result = theDatabase.write( writerID );
+
+		auto time_end = std::chrono::steady_clock::now();
+
+		time_writer = time_writer + (time_end - time_start);
 
 		mtx_enter.unlock();
 
@@ -120,5 +131,6 @@ void reader( int readerID, int numSeconds ) {
 void waittime() {
 
 	std::cout << "Overall waiting time writer = " << writer_wait << std::endl;
+	std::cout << "Time writer = " << time_writer.count() << std::endl;
 
 }

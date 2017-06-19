@@ -1,5 +1,7 @@
 #pragma once
 
+#include "common.h"
+
 // The writer thread
 void writer( int writerID, int numSeconds );
 
@@ -7,3 +9,4 @@ void writer( int writerID, int numSeconds );
 void reader( int readerID, int numSeconds );
 
 void waittime();
+

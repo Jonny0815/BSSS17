@@ -6,16 +6,18 @@
 
 #include "database.h"
 #include "reader-writer-threads.h"
+#include "common.h"
 
 const int maxThreads = 1024;
+
 
 /********************************************* * main entry point *********************************************/
 int main(int argc, char *argv[])
 {
 
-	if (argc != 4) {
+	if (argc != 5) {
 		std::cerr << "Usage: " << argv[0]
-			<< " numSeconds numReaders numWriters" << std::endl;
+			<< " numSeconds numReaders numWriters timewait" << std::endl;
 		return(1);
 	}
 
@@ -25,6 +27,9 @@ int main(int argc, char *argv[])
 	assert((0 <= numReaders) && (numReaders < maxThreads));
 	int numWriters = atoi(argv[3]);
 	assert((0 <= numWriters) && (numWriters < maxThreads));
+	timetowait = atoi(argv[4]);
+	
+
 
 	std::vector< std::thread > rThread(numReaders);
 	std::vector< std::thread > wThread(numWriters);
