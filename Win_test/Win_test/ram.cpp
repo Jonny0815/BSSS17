@@ -4,10 +4,12 @@
 
 ram::ram()
 {
+
 	for (size_t i = 0; i < 1024; i++)
 	{
 		bytes.push_back(new byte(0));
 	}
+
 
 	for (size_t i = 0; i < number_of_pages; i++)
 	{
@@ -26,6 +28,6 @@ ram::~ram()
 
 	for (size_t i = 0; i < 1024; i++)
 	{
-		delete bytes[i];
+		delete bytes.at(i);
 	}
 }

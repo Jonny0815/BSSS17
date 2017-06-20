@@ -5,10 +5,13 @@
 page_table::page_table(int amount)
 {
 
-	for (int i = 0; i < amount; i++)
-	{
-		pages.push_back(new page);
-	}
+	page* tmp = new page;
+	tmp->frame_number = 0;
+	tmp->mod = false;
+	tmp->pres = false;
+	tmp->prot = false;
+	tmp->ref = false;
+	pages.push_back(tmp);
 
 }
 

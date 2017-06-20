@@ -5,6 +5,8 @@
 #include "setitings.h"
 #include "byte.h"
 
+
+#include "stdafx.h"
 #include <random>
 #include <vector>
 
@@ -15,7 +17,7 @@ private:
 
 	page_table* PT;
 	int data_startpoint = 0;
-	size_t data_size = 0;
+	int data_size = 0;
 
 	byte* std_byte;
 	byte* write_byte;
@@ -26,7 +28,7 @@ public:
 	process(hdd*);
 	~process();
 
-	size_t get_size() { return data_size; }
+	int get_size() { return data_size; }
 	page_table* get_pt() { return PT; }
 	byte* get_stdb() { return std_byte; }
 	byte* get_writeb() { return write_byte; }

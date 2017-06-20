@@ -2,7 +2,9 @@
 
 #include <vector>
 #include <iostream>
-
+#include <ctime>
+#include <cstdlib>
+#include "stdafx.h"
 
 #include "mmu.h"
 #include "process.h"
@@ -28,7 +30,8 @@ private:
 	int read_operations = 0;
 	int write_operations = 0;
 	int process_change_operations = 0;
-
+	int read_acess_violations = 0;
+	int write_acess_violations = 0;
 
 public:
 	processing_unit();
@@ -36,6 +39,8 @@ public:
 
 
 	int work();
+
+	void report();
 
 };
 

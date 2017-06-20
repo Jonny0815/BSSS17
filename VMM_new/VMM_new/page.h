@@ -12,7 +12,8 @@ public:
 	bool ref = false;
 	bool prot = false;
 	bool pres = false;
-	int frame_number = 0;
+	int frame_number = -1;
+	int page_number = -1;
 	
 
 };

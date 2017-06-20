@@ -8,10 +8,7 @@ int main()
 	
 	processing_unit pu;
 
-	for (size_t i = 0; i < 20; i++)
-	{
-		pu.work();
-	}
+	pu.work();
     
     return 0;
 }

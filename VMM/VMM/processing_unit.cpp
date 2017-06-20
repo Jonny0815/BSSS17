@@ -14,6 +14,7 @@ processing_unit::processing_unit()
 		processes.push_back(new process(MMU->get_os()->get_hdd()));
 	}
 
+	switch_process();
 }
 
 
@@ -77,9 +78,9 @@ bool processing_unit::write(int adress)
 {
 	if (RAM->bytes[MMU->translate(adress)] != active_process->get_stdb())
 	{
+		cout << "CPU: Seems like the active process is trying to overwrite bytes not matching std_byte, abording" << endl;
 		return false;
 	}
-
 
 	RAM->bytes[MMU->translate(adress)] = active_process->get_writeb();
 
@@ -91,8 +92,13 @@ bool processing_unit::read(int adress)
 {
 	if (RAM->bytes[MMU->translate(adress)] != active_process->get_stdb())
 	{
+
+		cout << "CPU: Seems like the active process is trying to read bytes not matching std_byte, abording" << endl;
+
 		return false;
 	}
+
+
 
 	return true;
 }
@@ -112,7 +118,7 @@ int processing_unit::gen_adress() {
 
 	if (adress_generator_mode == 0)
 	{
-		int adress = rand() % active_process->get_size(); //generate random adress
+		int adress = rand() % active_process->get_size()*page_size; //generate random adress
 
 		for (size_t i = 0; i < active_process->used_adr.size(); i++) //make sure it has not been used yet
 		{

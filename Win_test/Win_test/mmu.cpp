@@ -33,13 +33,18 @@ int mmu::translate(int adress)
 	int page = adress / page_size;
 	int offset = adress % page_size;
 
-	
+	cout << "___MMU__: trying to translate adress " << adress << endl;
 
 	if (PT->pages.at(page)->pres)
 	{
+
+		cout << "___MMU__: sucess ! returning adress " << PT->pages.at(page)->frame_number*page_size + offset << endl;
+
 		return PT->pages.at(page)->frame_number*page_size + offset;
 	}
 	else {
+
+		cout << "___MMU__: page not present, calling OS" << endl;
 
 		PT->pages.at(page)->frame_number = OS->load_page(page);
 		PT->pages.at(page)->pres = true;
