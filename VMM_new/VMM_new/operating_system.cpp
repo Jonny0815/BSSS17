@@ -10,6 +10,7 @@ operating_system::operating_system(ram* RAM_h)
 	RAM = RAM_h;
 
 	pages_removed = 0;
+	pages_loaded = 0;
 
 }
 
@@ -35,6 +36,8 @@ int operating_system::load_page(int page)
 
 	cout << "___OS___: Loading page " << page << " from process with data_startpoint " << active_process->get_data_start() << " into frame " << frame_number << endl;
 
+	pages_loaded++;
+
 	return frame_number;
 }
 
@@ -49,7 +52,7 @@ int operating_system::find_free_frame()
 		if (RAM->frames.at(i)->Page == nullptr)
 		{
 
-			cout << "___OS___: found free frame at: " << i << endl;
+			cout << "___OS___: found free frame at: " <<  i << endl;
 
 			return i;
 		}

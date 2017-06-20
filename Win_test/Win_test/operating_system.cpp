@@ -10,6 +10,7 @@ operating_system::operating_system(ram* RAM_h)
 	RAM = RAM_h;
 
 	pages_removed = 0;
+	pages_loaded = 0;
 
 }
 
@@ -34,6 +35,8 @@ int operating_system::load_page(int page)
 	RAM->frames.at(frame_number)->Page = active_process->get_pt()->pages.at(page);
 
 	cout << "___OS___: Loading page " << page << " from process with data_startpoint " << active_process->get_data_start() << " into frame " << frame_number << endl;
+
+	pages_loaded++;
 
 	return frame_number;
 }

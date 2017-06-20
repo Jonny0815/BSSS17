@@ -184,5 +184,6 @@ void processing_unit::report() {
 	cout << "read acess violations     : " << read_acess_violations << endl;
 	cout << "write acess violations    : " << write_acess_violations << endl<<endl;
 	cout << "number of pages removed   : " << MMU->get_os()->pages_removed << endl;
+	cout << "number of pages loaded   : " << MMU->get_os()->pages_loaded << endl;
 	cout << "________________________________________________________________________________" << endl;
 }

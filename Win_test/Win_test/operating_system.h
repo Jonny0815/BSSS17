@@ -33,6 +33,7 @@ public:
 	void set_ap(process* ap_h) { active_process = ap_h; };
 
 	int pages_removed = 0;
+	int pages_loaded = 0;
 
 };
 
