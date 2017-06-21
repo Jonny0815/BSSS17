@@ -6,7 +6,7 @@
 int main()
 {
 	//problems with srand(time(NULL)) on linux !!!
-	srand(4);
+	srand(197);
 
 	processing_unit pu;
 

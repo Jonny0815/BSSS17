@@ -40,6 +40,8 @@ int mmu::translate(int adress)
 
 		cout << "___MMU__: sucess ! returning adress " << PT->pages.at(page)->frame_number*page_size + offset << endl;
 
+		PT->pages.at(page)->ref = true;
+
 		return PT->pages.at(page)->frame_number*page_size + offset;
 	}
 	else {

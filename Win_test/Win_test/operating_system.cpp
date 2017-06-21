@@ -36,6 +36,8 @@ int operating_system::load_page(int page)
 
 	cout << "___OS___: Loading page " << page << " from process with data_startpoint " << active_process->get_data_start() << " into frame " << frame_number << endl;
 
+	
+
 	pages_loaded++;
 
 	return frame_number;

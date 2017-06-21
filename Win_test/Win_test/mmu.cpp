@@ -35,11 +35,12 @@ int mmu::translate(int adress)
 
 	cout << "___MMU__: trying to translate adress " << adress << endl;
 
-	if (PT->pages.at(page)->pres)
+	if (PT->pages.at(page)->pres == true)
 	{
 
 		cout << "___MMU__: sucess ! returning adress " << PT->pages.at(page)->frame_number*page_size + offset << endl;
 
+		PT->pages.at(page)->ref = true;
 		return PT->pages.at(page)->frame_number*page_size + offset;
 	}
 	else {
